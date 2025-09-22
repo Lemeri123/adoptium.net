@@ -5,9 +5,10 @@ interface PageHeaderProps {
   subtitle: string | React.ReactNode
   description?: string | React.ReactNode
   className?: string
+  buttonTitles?: string[]  
 }
 
-export default function PageHeader({ title, subtitle, description, className }: PageHeaderProps) {
+export default function PageHeader({ title, subtitle, description, className, buttonTitles }: PageHeaderProps) {
   if (!title || !subtitle) {
     return null
   }
@@ -46,6 +47,18 @@ export default function PageHeader({ title, subtitle, description, className }: 
           >
             {description}
           </div>
+          {buttonTitles && buttonTitles.length > 0 && (
+            <div className="flex gap-4 mt-10 flex-wrap justify-center">
+              {buttonTitles.map((btn, idx) => (
+                <button
+                  key={idx}
+                  className="bg-transparent border-2 border-pink-500/0 text-white text-base leading-6 text-[16px] w-[191px] h-[48px] rounded-2xl gradient-border"
+                >
+                  {btn}
+                </button>
+              ))}
+            </div>
+          )}
         </div>
       </div>
     </div>
